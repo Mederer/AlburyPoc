@@ -12,7 +12,6 @@ using System.Collections.Generic;
 
 namespace Albury.Function
 {
-
     public static class IdeaManager
     {
         [FunctionName("IdeaManager")]
@@ -31,7 +30,7 @@ namespace Albury.Function
                     return await GetIdeas(container);
                 case "POST":
                     string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-                    CreateideaRequest idea = JsonConvert.DeserializeObject<CreateideaRequest>(requestBody);
+                    CreateIdeaRequest idea = JsonConvert.DeserializeObject<CreateIdeaRequest>(requestBody);
                     return await CreateIdea(container, idea);
                 default:
                     return new BadRequestResult();
@@ -54,7 +53,7 @@ namespace Albury.Function
             return new OkObjectResult(ideas);
         }
 
-        public static async Task<IActionResult> CreateIdea(Container container, CreateideaRequest idea)
+        public static async Task<IActionResult> CreateIdea(Container container, CreateIdeaRequest idea)
         {
             var response = await container.CreateItemAsync<Idea>(new Idea { id = Guid.NewGuid().ToString(), title = idea.title, stage = idea.stage });
 

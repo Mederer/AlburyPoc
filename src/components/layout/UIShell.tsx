@@ -13,6 +13,7 @@ function UIShell() {
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
                             <Nav.Link as={Link} to="/ideas">Ideas</Nav.Link>
                             <Nav.Link as={Link} to="/ideas/create">Submit Idea</Nav.Link>
+                            <Nav.Link as={Link} to="/reporting">Reporting</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
