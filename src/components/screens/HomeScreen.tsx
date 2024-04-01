@@ -7,7 +7,7 @@ function HomeScreen() {
     useEffect(() => {
         fetch("/api/IdeaManager")
         .then((res) => res.json())
-        .then((data) => setData(data.message));
+        .then((data) => setData(data.title));
     }, []);
 
     return (
