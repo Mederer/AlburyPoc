@@ -7,21 +7,11 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Cosmos;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
 namespace Albury.Function
 {
-
-    public class Idea
-    {
-        public string id { get; set; }
-        public string title { get; set; }
-
-        public string stage {get;set;}
-    }
 
     public static class IdeaManager
     {
@@ -39,6 +29,10 @@ namespace Albury.Function
             {
                 case "GET":
                     return await GetIdeas(container);
+                case "POST":
+                    string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                    CreateideaRequest idea = JsonConvert.DeserializeObject<CreateideaRequest>(requestBody);
+                    return await CreateIdea(container, idea);
                 default:
                     return new BadRequestResult();
             }
@@ -49,7 +43,7 @@ namespace Albury.Function
         {
             QueryDefinition query = new QueryDefinition("SELECT * FROM c");
             FeedIterator<Idea> resultSet = container.GetItemQueryIterator<Idea>(query);
-            List<Idea> ideas = new();
+            List<Idea> ideas = new List<Idea>();
 
             while (resultSet.HasMoreResults)
             {
@@ -58,6 +52,13 @@ namespace Albury.Function
             }
 
             return new OkObjectResult(ideas);
+        }
+
+        public static async Task<IActionResult> CreateIdea(Container container, CreateideaRequest idea)
+        {
+            var response = await container.CreateItemAsync<Idea>(new Idea { id = Guid.NewGuid().ToString(), title = idea.title, stage = idea.stage });
+
+            return new OkObjectResult(response.Resource);
         }
     }
 }

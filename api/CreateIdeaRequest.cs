@@ -1,0 +1,1 @@
+public record CreateideaRequest(string title, string stage);
