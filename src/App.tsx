@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import HomeScreen from "./components/screens/HomeScreen";
+import UIShell from "./components/layout/UIShell";
+import ViewIdeasScreen from "./components/screens/ViewIdeasScreen";
 
 function App() {
 
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    fetch("/api/IdeaManager")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
   return (
-    <div>
-      <h1>Albury POC</h1>
-      {data && <p>{data}</p>}
-    </div>
+    <Routes>
+      <Route element={<UIShell />}>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/ideas" element={<ViewIdeasScreen />} />
+      </Route>
+    </Routes>
   )
 }
 
