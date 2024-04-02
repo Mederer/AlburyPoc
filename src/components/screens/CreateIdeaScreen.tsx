@@ -18,7 +18,7 @@ function CreateIdeaScreen() {
         const idea = {
             title,
             description,
-            stage
+            stage: stage.slice(0, 1).toUpperCase() + stage.slice(1)
         }
 
         try {
@@ -57,9 +57,9 @@ function CreateIdeaScreen() {
                 <Form.Group className="mb-3">
                     <Form.Label>Stage</Form.Label>
                     <Form.Select value={stage} onChange={e => setStage(e.target.value)} >
-                        <option value="testing">Testing</option>
-                        <option value="development">Development</option>
-                        <option value="complete">Complete</option>
+                        <option value="Testing">Testing</option>
+                        <option value="Development">Development</option>
+                        <option value="Complete">Complete</option>
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">

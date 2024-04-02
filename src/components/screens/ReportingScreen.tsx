@@ -7,9 +7,6 @@ import styles from "./ReportingScreen.module.scss";
 
 interface IdeaByStage {
   [key: string]: number;
-  "testing": number;
-  "development": number;
-  "production": number;
 }
 
 function ReportingScreen() {
