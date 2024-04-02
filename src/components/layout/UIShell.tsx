@@ -19,7 +19,7 @@ function UIShell() {
                 </Container>
             </Navbar>
         </header>
-        <main>
+        <main style={{marginTop: "1rem"}}>
             <Outlet />
         </main>
     </>
