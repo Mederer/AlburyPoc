@@ -55,7 +55,7 @@ namespace Albury.Function
 
         public static async Task<IActionResult> CreateIdea(Container container, CreateIdeaRequest idea)
         {
-            var response = await container.CreateItemAsync<Idea>(new Idea { id = Guid.NewGuid().ToString(), title = idea.title, stage = idea.stage });
+            var response = await container.CreateItemAsync<Idea>(new Idea { id = Guid.NewGuid().ToString(), title = idea.title, stage = idea.stage, description = idea.description });
 
             return new OkObjectResult(response.Resource);
         }

@@ -32,6 +32,7 @@ function IdeaDetailScreen() {
         <Container>
             <h1>{idea.title}</h1>
             <p>{idea.stage}</p>
+            <p>{idea.description}</p>
         </Container>
     );
 }

@@ -1,1 +1,1 @@
-public record CreateIdeaRequest(string title, string stage);
+public record CreateIdeaRequest(string title, string stage, string description);
