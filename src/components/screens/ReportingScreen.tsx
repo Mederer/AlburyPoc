@@ -31,7 +31,7 @@ function ReportingScreen() {
     }
     acc[idea.stage.toLowerCase()] = acc[idea.stage.toLowerCase()] + 1;
     return acc;
-  }, {} as IdeaByStage) ?? { "testing": 0, "development": 0, "production": 0 };
+  }, {} as IdeaByStage) ?? { "Testing": 0, "Development": 0, "Production": 0 };
 
   const data = {
     labels: Object.keys(ideasByStage).map(stage => stage[0].toUpperCase() + stage.slice(1)),

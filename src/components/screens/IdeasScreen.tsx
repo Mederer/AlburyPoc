@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Button, Card, Container, Spinner } from "react-bootstrap";
 import { Idea } from "../../types";
 import styles from "./HomeScreen.module.scss";
+import { useNavigate } from "react-router-dom";
 
 function ViewIdeasScreen() {
     const [data, setData] = useState<Idea[] | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/api/IdeaManager")
@@ -18,6 +20,10 @@ function ViewIdeasScreen() {
         </Container>
     }
 
+    const handleNavigate = (to: string) => {
+        navigate(to);
+    }
+
     return (
         <Container>
             <div className={styles.ideaGrid}>
@@ -28,7 +34,7 @@ function ViewIdeasScreen() {
                             <Card.Text>
                                 {idea.stage}
                             </Card.Text>
-                            <Button variant="primary">Details</Button>
+                            <Button variant="primary" onClick={() => handleNavigate(`/ideas/${idea.id}`)}>Details</Button>
                         </Card.Body>
                     </Card>
                 ))}

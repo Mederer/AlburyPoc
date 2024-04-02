@@ -4,6 +4,7 @@ import CreateIdeaScreen from "./components/screens/CreateIdeaScreen";
 import IdeasScreen from "./components/screens/IdeasScreen";
 import HomeScreen from "./components/screens/HomeScreen";
 import ReportingScreen from "./components/screens/ReportingScreen";
+import IdeaDetailScreen from "./components/screens/IdeaDetailScreen";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Route element={<UIShell />}>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/ideas" element={<IdeasScreen />} />
+        <Route path="/ideas/:id" element={<IdeaDetailScreen />} />
         <Route path="/ideas/create" element={<CreateIdeaScreen />} />
         <Route path="/reporting" element={<ReportingScreen />} />
       </Route>
